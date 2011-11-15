@@ -1,0 +1,25 @@
+This is a simple Python text formatting project. After searching for this capability for a little while, I decided to write my own as the following requirements seemed to be unique:
+
+Create a table of numbers from a CSV file
+Control the number of significant figures (significant digits) displayed
+Format numbers with “,” and ” ” like this 123,456.789 123
+Align columns on decimal points–this is best for readability
+Fit the columns automatically based on data and formatting
+There are many code snippets that do one part or another of this, but I didn’t find anything that fulfilled all the requirements. So I created couple of simple classes to accomplish the task. One caveat is that the output needs to be displayed in a constant-space font.
+
+Example output:
+
+  483,000. |       471.7 |     0.460 6 | 0.000 449 8
+  966,000. |       943.4 |     0.921 3 | 0.000 899 7
+1,449,000. |     1,415.  |     1.382   | 0.001 349  
+1,932,000. |     1,887.  |     1.843   | 0.001 799  
+2,415,000. |     2,358.  |     2.303   | 0.002 249  
+2,898,000. |     2,830.  |     2.764   | 0.002 699  
+3,381,000. |     3,302.  |     3.224   | 0.003 149  
+3,864,000. |     3,773.  |     3.685   | 0.003 599  
+5,796,000. |     5,660.  |     5.528   | 0.005 398  
+7,728,000. |     7,547.  |     7.370   | 0.007 197  
+9,660,000. |     9,434.  |     9.213   | 0.008 997
+
+  
+Handles negative numbers correctly too. Enjoy!
