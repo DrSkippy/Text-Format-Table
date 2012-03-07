@@ -36,9 +36,14 @@ class FNumber(object):
 		else:
 			self.sign = ""
 		# calculate the value to desire sig figs
-		decade = int(math.floor(math.log10(abs(x))))
-		decadeFactor = math.pow(10., self.sigFigs - decade - 1)
-		self.sigValue = round(float(abs(x)) * decadeFactor, 0) / decadeFactor
+		if x <> 0:
+			decade = int(math.floor(math.log10(abs(x))))
+			decadeFactor = math.pow(10., self.sigFigs - decade - 1)
+			self.sigValue = round(float(abs(x)) * decadeFactor, 0) / decadeFactor
+		else:
+			decade = 0
+			decadeFactor = 1
+			self.sigValue = 0.0
 		# are any of the digits in int portion significant?
 		if decade > 0:
 			intSize = decade + 1
