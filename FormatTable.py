@@ -71,6 +71,10 @@ class FormatTable(object):
 if __name__ == '__main__':
 	""" Simple example of multi-column table with varying sf specified for each number. """
 	values = [ [
+			("column 1", 0),
+			("column 2", 0),
+			("column C", 0),
+			("another column", 0)],[
 			(1234.234, 1),
 			(1234.234, 2),
 			(1234.234, 3),

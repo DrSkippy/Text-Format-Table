@@ -23,63 +23,79 @@ class FNumber(object):
 	mantissaSeparator = " "
 	decimalSeparator = "."
 
-	def __init__(self, x, sf):
-		if sf <= 0:
-			print >>sys.stderr, "What does 0 significant figures mean?"
-			sys.exit()
-		# store the values
-		self.sigFigs = int(sf)
-		self.value = float(x)
-		# set the sign
-		if self.value < 0:
-			self.sign = "-"
-		else:
+	def __init__(self, xstring, sf):
+		try:
+			x = float(xstring)
+			if math.isnan(x) or math.isinf(x):
+				raise ValueError
+			if sf <= 0:
+				print >>sys.stderr, "What does 0 significant figures mean?"
+				sys.exit()
+		except ValueError:
+			# string
+			self.sigFigs = 0
+			self.value = 0.0
 			self.sign = ""
-		# calculate the value to desire sig figs
-		if x <> 0:
-			decade = int(math.floor(math.log10(abs(x))))
-			decadeFactor = math.pow(10., self.sigFigs - decade - 1)
-			self.sigValue = round(float(abs(x)) * decadeFactor, 0) / decadeFactor
-		else:
-			decade = 0
-			decadeFactor = 1
 			self.sigValue = 0.0
-		# are any of the digits in int portion significant?
-		if decade > 0:
-			intSize = decade + 1
-		else: # decade <= 0
-			intSize = 0
-		#
-		if intSize > 0:  # at least on sig digit left of decimal
-			if intSize >= self.sigFigs:
-				mantissaSize = 0
+			self.valueStr = xstring
+		else:	
+			# store the values
+			self.sigFigs = int(sf)
+			self.value = float(x)
+			# set the sign
+			if self.value < 0:
+				self.sign = "-"
 			else:
-				mantissaSize = self.sigFigs - intSize
-		else: # intSize == 0
-			mantissaSize = self.sigFigs - decade - 1
-		#
-		fmtStr = "%%%d.%dF"%(intSize, mantissaSize)
-		tmpStr = fmtStr%self.sigValue
-		tmpList = tmpStr.split(self.decimalSeparator)
-		intStr = self.sign
-		intLen = len(tmpList[0])
-		for i in range(0, intLen):
-			if (intLen - i)%3 == 0 and i <> 0:
-				intStr += self.intSeparator
-			intStr += tmpList[0][i]
-		mantStr = self.decimalSeparator
-		for i in range(0, mantissaSize):
-			if i <> 0 and i%3 == 0 and i <> mantissaSize:
-				mantStr += self.mantissaSeparator
-			mantStr += tmpList[1][i]
-		self.valueStr = intStr + mantStr
+				self.sign = ""
+			# calculate the value to desire sig figs
+			if x <> 0:
+				decade = int(math.floor(math.log10(abs(x))))
+				decadeFactor = math.pow(10., self.sigFigs - decade - 1)
+				self.sigValue = round(float(abs(x)) * decadeFactor, 0) / decadeFactor
+			else:
+				decade = 0
+				decadeFactor = 1
+				self.sigValue = 0.0
+			# are any of the digits in int portion significant?
+			if decade > 0:
+				intSize = decade + 1
+			else: # decade <= 0
+				intSize = 0
+			#
+			if intSize > 0:  # at least on sig digit left of decimal
+				if intSize >= self.sigFigs:
+					mantissaSize = 0
+				else:
+					mantissaSize = self.sigFigs - intSize
+			else: # intSize == 0
+				mantissaSize = self.sigFigs - decade - 1
+			#
+			fmtStr = "%%%d.%dF"%(intSize, mantissaSize)
+			tmpStr = fmtStr%self.sigValue
+			tmpList = tmpStr.split(self.decimalSeparator)
+			intStr = self.sign
+			intLen = len(tmpList[0])
+			for i in range(0, intLen):
+				if (intLen - i)%3 == 0 and i <> 0:
+					intStr += self.intSeparator
+				intStr += tmpList[0][i]
+			mantStr = self.decimalSeparator
+			for i in range(0, mantissaSize):
+				if i <> 0 and i%3 == 0 and i <> mantissaSize:
+					mantStr += self.mantissaSeparator
+				mantStr += tmpList[1][i]
+			self.valueStr = intStr + mantStr
 	
 	def size(self):
 		return len(self.valueStr)
 
 	def getOffset(self):
 		# count, not index
-		return 1 + string.index(self.valueStr, self.decimalSeparator)
+		if self.sigFigs != 0:
+			res = 1 + string.index(self.valueStr, self.decimalSeparator)
+		else:
+			res = 1 + self.size()/2
+		return res
 	
 	def getRightOffset(self):
 		return self.size() - self.getOffset()
@@ -110,6 +126,7 @@ if __name__ == '__main__':
 			(1234.234, 9),
 			(.23456789, 1),
 			(.23456789, 2),
+			("hello there", 0),
 			(-.23456789, 2),
 			(.23456789, 3),
 			(.23456789, 4),

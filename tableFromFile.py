@@ -18,8 +18,7 @@ from FormatTable import FormatTable
 
 arry = []
 for row in csv.reader(sys.stdin):
-	r = [float(x) for x in row]
-	arry.append(r)
+	arry.append(row)
 
 ft = FormatTable(arry, 4)
 print ft
