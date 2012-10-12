@@ -1,13 +1,10 @@
 #!/usr/bin/env python
-__copyright__ = "Copyright 2011 Scott Hendrickson"
-__license__ = "GPL"
-__author__ = "Scott Hendrickson"
-__version__ = "1.0.0"
-__email__ = "scott@drskippy.net"
-
 import sys
 import math
 import string
+__author__ = "Scott Hendrickson"
+__version__ = "1.0.1"
+__email__ = "scott@drskippy.net"
 
 class FNumber(object):
     """Float number container produces string formatted number representation with 
@@ -15,7 +12,6 @@ class FNumber(object):
     separators for thousanths.  Provides access to string size and offset to 
     decimal.
     """
-
     # customize separators if necessary
     intSeparator = ","
     mantissaSeparator = " "
@@ -114,7 +110,7 @@ class FNumber(object):
         return self.valueStr
             
 if __name__ == '__main__':
-    """Simple example of a single column of numbers, aligned on the decimal points"""
+    # Simple example of a single column of numbers, aligned on the decimal points
     values = [ 
             (1234.234, 1),
             (1234.234, 2),

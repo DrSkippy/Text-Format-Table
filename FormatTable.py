@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-__copyright__ = "Copyright 2012 Scott Hendrickson"
-__license__ = "GPL"
 __author__ = "Scott Hendrickson"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __email__ = "scott@drskippy.net"
 from FNumber import FNumber
 
@@ -13,9 +11,8 @@ LATEX_HDR = """
 \\begin{table}
 \\begin{tabular}{%s}
 \\hline
-%s\\\\
-\\hline
 """
+LATEX_HROW = "\\hline"
 
 LATEX_FTR = """\\hline
 \\end{tabular}
@@ -54,37 +51,47 @@ class FormatTable(object):
     """ Create a text table of decimal aligned numbers formated with FNumber. """
     
     def __init__(self, table, sf=None, latex=False):
-        if latex:
-            self.header = LATEX_HDR%("|" + "S|"*len(table[0]), '&'.join(["{%s}"%x for x in table[0]]))
-            self.tableSeparator = " & "
-            self.endline = " \\\\\n"
-            self.footer = LATEX_FTR
-        else:
-            self.header = ""
-            self.tableSeparator = " | "
-            self.endline = " \n"
-            self.footer = ""
         self.offsets = Offsets()
         self.cnums = []
         for row in table:
             if sf is None:
                 # if sf=None, then each number is a tuple with the second element
                 # containing the sf to use for that number
-                tmp = [ FNumber(x, s, latex) for (x,s) in row]
+                tmp = [FNumber(x, s, latex) for (x,s) in row]
             else:
                 # All numbers in the table use the same sf
-                tmp = [ FNumber(x, sf, latex) for x in row]
+                tmp = [FNumber(x, sf, latex) for x in row]
             self.cnums.append(tmp)
             for i in range(0,len(tmp)):
                 self.offsets.test(i, tmp[i].getOffset(), tmp[i].getRightOffset())
+        if latex:
+            self.header = LATEX_HDR%("|" + "S|"*len(self.cnums[0]))
+            self.tableSeparator = " & "
+            self.header_row = LATEX_HROW
+            self.endline = " \\\\\n"
+            self.footer = LATEX_FTR
+        else:
+            self.header = ""
+            self.tableSeparator = " | "
+            # get full table width
+            width = len(self.tableSeparator.join(
+                [self.cnums[0][i].getPadded(self.offsets.size(i), self.offsets.getLeft(i)) for i in range(len(self.cnums[0]))]))
+            self.header_row = '-'*width
+            self.endline = " \n"
+            self.footer = ""
 
     def __repr__(self):
         res = self.header
+        count = 0
         for row in self.cnums:
+            count += 1
             tmp = []
-            for i in range(0,len(row)):
-                tmp.append( row[i].getPadded(self.offsets.size(i), self.offsets.getLeft(i)) )
+            for i in range(len(row)):
+                tmp.append(row[i].getPadded(self.offsets.size(i), self.offsets.getLeft(i)))
             res += self.tableSeparator.join(tmp)
+            if count == 1:
+                res += self.endline
+                res += self.header_row
             res += self.endline
         res += self.footer
         return res
@@ -135,5 +142,6 @@ if __name__ == '__main__':
         arry.append(tmp)
     f1 = FormatTable (arry, 3)
     print f1
+    print "*****\n"
     f2 = FormatTable (arry, 3, latex=True)
     print f2
