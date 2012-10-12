@@ -4,6 +4,7 @@ __version__ = "1.0.1"
 __email__ = "scott@drskippy.net"
 # Read a comma delimited file and output formatted text table.  Format each number
 # to 4 significant figures. E.g.         cat test.csv | ./tableFromFile.py
+# Assumes header row is first
 import csv
 import sys
 from FormatTable import FormatTable

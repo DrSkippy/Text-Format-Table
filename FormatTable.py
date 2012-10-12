@@ -12,7 +12,8 @@ LATEX_HDR = """
 \\begin{tabular}{%s}
 \\hline
 """
-LATEX_HROW = "\\hline"
+LATEX_HROW = """\\hline
+"""
 
 LATEX_FTR = """\\hline
 \\end{tabular}
@@ -76,9 +77,9 @@ class FormatTable(object):
             # get full table width
             width = len(self.tableSeparator.join(
                 [self.cnums[0][i].getPadded(self.offsets.size(i), self.offsets.getLeft(i)) for i in range(len(self.cnums[0]))]))
-            self.header_row = '-'*width
             self.endline = " \n"
-            self.footer = ""
+            self.header_row = '-'*width + self.endline
+            self.footer = self.header_row
 
     def __repr__(self):
         res = self.header
@@ -89,10 +90,9 @@ class FormatTable(object):
             for i in range(len(row)):
                 tmp.append(row[i].getPadded(self.offsets.size(i), self.offsets.getLeft(i)))
             res += self.tableSeparator.join(tmp)
-            if count == 1:
-                res += self.endline
-                res += self.header_row
             res += self.endline
+            if count == 1:
+                res += self.header_row
         res += self.footer
         return res
             
