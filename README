@@ -24,7 +24,7 @@ Example output:
 Handles negative numbers correctly too. 
 
 LATEX - use the -l option to get tables like as shown below.
-(not first row of input will be both title and first row of table--
+(Note that first row of input will be both title and first row of table--
 just delete what you don't need)
 
 > cat test.csv | ./tableFromFile.py -l
