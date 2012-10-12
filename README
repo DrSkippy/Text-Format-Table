@@ -33,7 +33,7 @@ Custom s.f. per value
 
 *****
 
-4 s.f. (tableFromFile.py default output, e.g. cat test.csv | ./tableFromFile.py):
+3 s.f. (tableFromFile.py default is 4, e.g. cat test.csv | ./tableFromFile.py):
 
       column 1     |        column 2       |       column C |    another column 
 ------------------------------------------------------------------------------- 
