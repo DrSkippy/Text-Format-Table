@@ -14,7 +14,7 @@ I created couple of simple classes to accomplish the task. One
 caveat is that the output needs to be displayed in a constant-space font.
 
 
-CSV output is the default behavior.  User -l to create LaTeX output.
+CSV output is the default behavior.  Use -l to create LaTeX output.
 
 Examples
 ========
