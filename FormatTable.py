@@ -55,7 +55,6 @@ class FormatTable(object):
         self.offsets = Offsets()
         self.cnums = []
         exec("sfl=%s"%sflist)
-        print sfl
         for row in table:
             if sf is None:
                 if sflist is None:
@@ -63,7 +62,6 @@ class FormatTable(object):
                     # containing the sf to use for that number
                     tmp = [FNumber(x, int(s), latex) for (x,s) in row]
                 else:
-                    print zip (row, sfl)
                     tmp = [FNumber(x, int(s), latex) for (x,s) in zip(row,sfl)]
             else:
                 # All numbers in the table use the same sf
