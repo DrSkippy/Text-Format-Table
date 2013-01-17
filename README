@@ -39,7 +39,7 @@ Custom s.f. per value
 ----------------------------------------------------------------------------------------- 
 
 *****
-Constant 3 s.f. (tableFromFile.py uses default 4, e.g. cat test.csv | ./tableFromFile.py -s3)
+Constant 3 s.f. (file2table.py uses default 4, e.g. cat test.csv | ./file2table.py -s3)
 
       column 1     |        column 2       |       column C |    another column 
 ------------------------------------------------------------------------------- 
@@ -79,8 +79,8 @@ latex table output requires siunitx package:
 
 For additional features and help, type
 
-> ./tableFromFile.py -h
-Usage: tableFromFile.py [options]
+> ./file2table.py -h
+Usage: file2table.py [options]
 
 Options:
   -h, --help            show this help message and exit
