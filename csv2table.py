@@ -18,4 +18,4 @@ parser.add_option("-c", "--sig-figs-by-column", dest="sflist", default=None,
 (options, args) = parser.parse_args()
 if options.sf is None and options.sflist is None:
     options.sf = 4
-print FormatTable([row for row in csv.reader(fileinput.input(args))], options.sf, options.latex, options.sflist)
+print FormatTable([row for row in csv.reader(fileinput.FileInput(args))], options.sf, options.latex, options.sflist)
