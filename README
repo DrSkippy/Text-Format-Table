@@ -3,7 +3,6 @@
    CONTROL SIGNIFICANT FIGURES DIPSLAYED on TABLE, COLUMN OR INDIVIDUAL VALUES
 
 
-
 This is a simple Python text formatting project. After searching for
 this capability for a little while, I decided to write my own as the
 following requirements seemed to be unique:
@@ -39,7 +38,7 @@ Custom s.f. per value
 ----------------------------------------------------------------------------------------- 
 
 *****
-Constant 3 s.f. (file2table.py uses default 4, e.g. cat test.csv | ./file2table.py -s3)
+Constant 3 s.f. (csv2table.py uses default 4, e.g. cat test.csv | ./csv2table.py -s3)
 
       column 1     |        column 2       |       column C |    another column 
 ------------------------------------------------------------------------------- 
@@ -79,8 +78,8 @@ latex table output requires siunitx package:
 
 For additional features and help, type
 
-> ./file2table.py -h
-Usage: file2table.py [options]
+> ./csv2table.py -h
+Usage: csv2table.py [options]
 
 Options:
   -h, --help            show this help message and exit
