@@ -55,7 +55,7 @@ class Offsets(object):
 class FormatTable(object):
     """ Create a text table of decimal aligned numbers formated with FNumber. """
     
-    def __init__(self, table, sf=None, latex=False, sflist=None):
+    def __init__(self, table, sf=None, latex=False, sflist=None, maxColWidth=None):
         self.offsets = Offsets()
         self.cnums = []
         exec("sfl=%s"%sflist)
@@ -64,12 +64,12 @@ class FormatTable(object):
                 if sflist is None:
                     # if sf=None, then each number is a tuple with the second element
                     # containing the sf to use for that number
-                    tmp = [FNumber(x, int(s), latex) for (x,s) in row]
+                    tmp = [FNumber(x, int(s), latex, maxColWidth) for (x,s) in row]
                 else:
-                    tmp = [FNumber(x, int(s), latex) for (x,s) in zip(row,sfl)]
+                    tmp = [FNumber(x, int(s), latex, maxColWidth) for (x,s) in zip(row,sfl)]
             else:
                 # All numbers in the table use the same sf
-                tmp = [FNumber(x, int(sf), latex) for x in row]
+                tmp = [FNumber(x, int(sf), latex, maxColWidth) for x in row]
             self.cnums.append(tmp)
             for i in range(0,len(tmp)):
                 self.offsets.test(i, tmp[i].getOffset(), tmp[i].getRightOffset())

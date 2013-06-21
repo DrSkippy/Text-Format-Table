@@ -17,7 +17,7 @@ class FNumber(object):
     mantissaSeparator = " "
     decimalSeparator = "."
 
-    def __init__(self, xstring, sf, latex=False):
+    def __init__(self, xstring, sf, latex=False, maxColWidth=None):
         try:
             x = float(xstring)
             if math.isnan(x) or math.isinf(x):
@@ -31,6 +31,9 @@ class FNumber(object):
             self.value = 0.0
             self.sign = ""
             self.sigValue = 0.0
+            # max column width only applies to text fields
+            if maxColWidth is not None and len(xstring) > maxColWidth:
+                    xstring = xstring[0:maxColWidth-3] + "..."
             if latex:
                 self.valueStr = "{%s}"%xstring
             else:

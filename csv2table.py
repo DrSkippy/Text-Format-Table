@@ -17,7 +17,9 @@ parser.add_option("-c", "--sig-figs-by-column", dest="sflist", default=None,
         help='Significant figures by column as list e.g. "[1,2,2,2,4]"')
 parser.add_option("-d", "--delimiter", dest="delim", default=",",
         help='Input file delimiter (default is comma)')
+parser.add_option("-w", "--max-column-width", dest="maxColWidth", default=50,
+        help='Maximum column width in characters (default is 50 char)')
 (options, args) = parser.parse_args()
 if options.sf is None and options.sflist is None:
     options.sf = 4
-print FormatTable([row for row in csv.reader(fileinput.FileInput(args), delimiter = options.delim)], options.sf, options.latex, options.sflist)
+print FormatTable([row for row in csv.reader(fileinput.FileInput(args), delimiter = options.delim)], options.sf, options.latex, options.sflist, options.maxColWidth)
