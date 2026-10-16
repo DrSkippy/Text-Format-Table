@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Custom exceptions raised by text_format_table."""
 
 

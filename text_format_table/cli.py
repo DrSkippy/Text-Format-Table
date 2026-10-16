@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Command line entry point.
 
 Read a comma delimited file and output formatted text table.

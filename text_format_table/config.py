@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Formatting configuration: separators, defaults and paging.
 
 Every tunable factor lives here instead of being hard coded in the formatting

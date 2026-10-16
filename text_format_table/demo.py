@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Examples formerly in the ``__main__`` blocks of FNumber.py and FormatTable.py.
 
 Run with ``python -m text_format_table.demo``.

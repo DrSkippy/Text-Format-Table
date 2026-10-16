@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Decimal-aligned text and LaTeX tables built from FNumber cells."""
 
 from __future__ import annotations

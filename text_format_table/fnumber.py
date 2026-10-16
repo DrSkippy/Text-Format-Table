@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Significant-figure number formatting with thousands/thousandths separators."""
 
 from __future__ import annotations

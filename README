@@ -159,5 +159,24 @@ Changes in 2.0
 Enjoy!
 
 
-License: MIT (see LICENSE). Versions 1.x were released under
-CC BY-SA 3.0 US (https://creativecommons.org/licenses/by-sa/3.0/us/).
+License
+=======
+
+Copyright (C) 2011-2026 Scott Hendrickson
+
+This library is free software: you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version (SPDX: LGPL-3.0-or-later).
+
+This library is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+for more details.
+
+You can use the library from any program, including proprietary ones;
+modified versions of the library itself must be shared under the same
+license. See COPYING.LESSER and COPYING for the full terms.
+
+Versions 1.x were released under CC BY-SA 3.0 US
+(https://creativecommons.org/licenses/by-sa/3.0/us/).
