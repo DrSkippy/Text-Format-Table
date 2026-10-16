@@ -21,6 +21,7 @@ from text_format_table.format_table import (
 __author__ = "Scott Hendrickson"
 __version__ = "2.0.0"
 __email__ = "scott@drskippy.net"
+__license__ = "MIT"
 
 __all__ = [
     "DEFAULT_CONFIG",
