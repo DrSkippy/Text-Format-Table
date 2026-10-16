@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
 """Decimal aligned text and LaTeX tables with significant-figure control."""
 
 from text_format_table.config import DEFAULT_CONFIG, FormatConfig, NumberFormat, load_config
@@ -21,6 +22,7 @@ from text_format_table.format_table import (
 __author__ = "Scott Hendrickson"
 __version__ = "2.0.0"
 __email__ = "scott@drskippy.net"
+__license__ = "LGPL-3.0-or-later"
 
 __all__ = [
     "DEFAULT_CONFIG",

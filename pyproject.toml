@@ -1,15 +1,16 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "text-format-table"
 version = "2.0.0"
 description = "Decimal aligned text and LaTeX tables with significant-figure control."
-readme = "README"
+readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Scott Hendrickson", email = "scott@drskippy.net" }]
-license = { text = "CC-BY-SA-3.0-US" }
+license = "LGPL-3.0-or-later"
+license-files = ["COPYING", "COPYING.LESSER"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11"]
